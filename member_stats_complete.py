@@ -294,10 +294,10 @@ class MemberStats(commands.Cog):
             view = ProfileView(dict(member_data))
         
         await ctx.send(embed=embed, view=view)
-    
+
     def create_profile_embed(self, user: discord.Member, member_data: dict) -> discord.Embed:
         """Create profile embed with member stats"""
-        # Get background-based color
+        # Get background-based color and image URL
         background = member_data.get('profile_background', 'hellforge')
         background_colors = {
             'hellforge': Colors.BLOOD_RED,
@@ -321,6 +321,13 @@ class MemberStats(commands.Cog):
         )
         
         embed.set_thumbnail(url=user.display_avatar.url)
+        
+        # Set image for profile background if available
+        from utils.config import Config
+        bg_images = Config.PROFILE_BACKGROUNDS
+        bg_image_url = bg_images.get(background)
+        if bg_image_url:
+            embed.set_image(url=bg_image_url)
         
         # Status and basic info
         status_emoji = {
