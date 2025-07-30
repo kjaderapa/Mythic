@@ -10,8 +10,11 @@ class Config:
     DEFAULT_ROSTERS = ["Exalted", "Eminent", "Famed", "Proud"]
     
     # Discord Bot Token (add your token here)
-    DISCORD_BOT_TOKEN = "MTM5OTQ5ODE2ODUyOTU4NDE4OA.GpCGHi.Gl3kJgSd_t9vO2T5UfzEvHWIW4LMTzyvGY_nY8"
-    DISCORD_TOKEN = "MTM5OTQ5ODE2ODUyOTU4NDE4OA.GpCGHi.Gl3kJgSd_t9vO2T5UfzEvHWIW4LMTzyvGY_nY8"
+    import os
+    from dotenv import load_dotenv
+    load_dotenv()  # Load environment variables from .env file
+    DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+    DISCORD_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
     
     # Emoji mappings for stats
     STAT_EMOJIS = {
