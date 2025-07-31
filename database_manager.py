@@ -362,11 +362,11 @@ class DatabaseManager:
             
             # Get recent attendance
             recent_events = await conn.fetch(f"""
-                SELECT e.name, e.event_date, a.attended
+                SELECT e.name, e.created_at as event_date, a.attended
                 FROM {schema_name}.attendance a
                 JOIN {schema_name}.events e ON a.event_id = e.event_id
                 WHERE a.user_id = $1
-                ORDER BY e.event_date DESC
+                ORDER BY e.created_at DESC
                 LIMIT $2
             """, user_id, limit)
             
